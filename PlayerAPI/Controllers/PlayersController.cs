@@ -19,8 +19,6 @@ namespace PlayerAPI.Controllers
             _repository = repository;
         }
 
-        //private readonly PlayerRepository _repository = new PlayerRepository();
-
         [HttpGet]
         public ActionResult <IEnumerable<Player>> GetAllPlayers()
         {
