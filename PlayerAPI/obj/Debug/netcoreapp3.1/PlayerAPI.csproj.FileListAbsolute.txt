@@ -61,3 +61,5 @@ C:\Users\Usuario\source\repos\PlayerAPI\PlayerAPI\bin\Debug\netcoreapp3.1\runtim
 C:\Users\Usuario\source\repos\PlayerAPI\PlayerAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Usuario\source\repos\PlayerAPI\PlayerAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Usuario\source\repos\PlayerAPI\PlayerAPI\obj\Debug\netcoreapp3.1\PlayerAPI.csproj.CopyComplete
+C:\Users\Usuario\source\repos\PlayerAPI\PlayerAPI\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\Usuario\source\repos\PlayerAPI\PlayerAPI\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

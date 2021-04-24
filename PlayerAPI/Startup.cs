@@ -31,6 +31,8 @@ namespace PlayerAPI
                 (Configuration.GetConnectionString("CommanderConnection")));
 
             services.AddControllers();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             
             services.AddScoped<IPlayerRepository, SqlPlayerRepository>();
         }

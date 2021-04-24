@@ -8,7 +8,10 @@ namespace PlayerAPI.Data
 {
     public interface IPlayerRepository
     {
+        bool SaveChanges();
+
         IEnumerable<Player> GetPlayer();
         Player GetPlayerById(int id);
+        void CreatePlayer(Player player);
     }
 }

@@ -8,6 +8,11 @@ namespace PlayerAPI.Data
 {
     public class PlayerRepository : IPlayerRepository
     {
+        public void CreatePlayer(Player player)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Player> GetPlayer()
         {
             var players = new List<Player>
@@ -23,6 +28,11 @@ namespace PlayerAPI.Data
         public Player GetPlayerById(int id)
         {
             return new Player { Id = 0, Level = 0, Nome = "Michael" };
+        }
+
+        public bool SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }
