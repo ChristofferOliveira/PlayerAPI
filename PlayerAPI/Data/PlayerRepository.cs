@@ -13,6 +13,11 @@ namespace PlayerAPI.Data
             throw new NotImplementedException();
         }
 
+        public void DeletePlayer(Player player)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Player> GetPlayer()
         {
             var players = new List<Player>
@@ -31,6 +36,11 @@ namespace PlayerAPI.Data
         }
 
         public bool SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdatePlayer(Player player)
         {
             throw new NotImplementedException();
         }

@@ -13,5 +13,7 @@ namespace PlayerAPI.Data
         IEnumerable<Player> GetPlayer();
         Player GetPlayerById(int id);
         void CreatePlayer(Player player);
+        void UpdatePlayer(Player player);
+        void DeletePlayer(Player player);
     }
 }

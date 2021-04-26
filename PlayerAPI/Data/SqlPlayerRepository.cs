@@ -25,6 +25,16 @@ namespace PlayerAPI.Data
             _context.Players.Add(player);
         }
 
+        public void DeletePlayer(Player player)
+        {
+            if (player == null)
+            {
+                throw new ArgumentException(nameof(player));
+            }
+
+            _context.Players.Remove(player);
+        }
+
         public IEnumerable<Player> GetPlayer()
         {
             return _context.Players.ToList();
@@ -38,6 +48,11 @@ namespace PlayerAPI.Data
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public void UpdatePlayer(Player player)
+        {
+            //Sem necessidade de código.
         }
     }
 }

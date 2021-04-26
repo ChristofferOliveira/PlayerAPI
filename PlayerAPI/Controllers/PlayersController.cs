@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using PlayerAPI.Data;
 using AutoMapper;
 using PlayerAPI.Dtos;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace PlayerAPI.Controllers
 {
@@ -25,20 +26,20 @@ namespace PlayerAPI.Controllers
 
         //GET api/players
         [HttpGet]
-        public ActionResult <IEnumerable<PlayerReadDto>> GetAllPlayers()
+        public ActionResult<IEnumerable<PlayerReadDto>> GetAllPlayers()
         {
             var playerItems = _repository.GetPlayer();
-            
+
             return Ok(_mapper.Map<IEnumerable<PlayerReadDto>>(playerItems));
         }
 
         //GET api/players/{id}
-        [HttpGet("{id}", Name="GetPlayerById")]
-        public ActionResult <PlayerReadDto> GetPlayerById(int id)
+        [HttpGet("{id}", Name = "GetPlayerById")]
+        public ActionResult<PlayerReadDto> GetPlayerById(int id)
         {
             var playerItems = _repository.GetPlayerById(id);
-            
-            if(playerItems != null)
+
+            if (playerItems != null)
                 return Ok(_mapper.Map<PlayerReadDto>(playerItems));
 
             return NotFound();
@@ -55,6 +56,69 @@ namespace PlayerAPI.Controllers
             var playerReadDto = _mapper.Map<PlayerReadDto>(playerModel);
 
             return CreatedAtRoute(nameof(GetPlayerById), new { Id = playerReadDto.Id }, playerReadDto);
+        }
+
+        //PUT api/players/{id}
+        [HttpPut("{id}")]
+        public ActionResult UpdatePlayer(int id, PlayerUpdateDto playerUpdateDto)
+        {
+            var playerModelFromRepo = _repository.GetPlayerById(id);
+            if(playerModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(playerUpdateDto, playerModelFromRepo);
+
+            _repository.UpdatePlayer(playerModelFromRepo);
+
+            _repository.SaveChanges();
+
+            return NoContent();
+
+        }
+
+        //PATCH api/players/{id}
+        [HttpPatch("id")]
+        public ActionResult PartialPlayerUpdate(int id, JsonPatchDocument<PlayerUpdateDto> patchDoc)
+        {
+            var playerModelFromRepo = _repository.GetPlayerById(id);
+            if (playerModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var playerToPatch = _mapper.Map<PlayerUpdateDto>(playerModelFromRepo);
+            patchDoc.ApplyTo(playerToPatch, ModelState);
+            
+            if (!TryValidateModel(playerToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(playerToPatch, playerModelFromRepo);
+
+            _repository.UpdatePlayer(playerModelFromRepo);
+
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
+        //DELETE api/players/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeletePlayer(int id)
+        {
+            var playerModelFromRepo = _repository.GetPlayerById(id);
+            if (playerModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _repository.DeletePlayer(playerModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
         }
     }
 }

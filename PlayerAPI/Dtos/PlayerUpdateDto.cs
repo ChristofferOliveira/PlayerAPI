@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlayerAPI.Dtos
 {
-    public class PlayerCreateDto
+    public class PlayerUpdateDto
     {
         [Required]
         [MaxLength(250)]

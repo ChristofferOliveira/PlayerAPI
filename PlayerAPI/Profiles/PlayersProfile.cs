@@ -14,6 +14,8 @@ namespace PlayerAPI.Profiles
         {
             CreateMap<Player, PlayerReadDto>();
             CreateMap<PlayerCreateDto, Player>();
+            CreateMap<PlayerUpdateDto, Player>();
+            CreateMap<Player, PlayerUpdateDto>();
         }
     }
 }
